@@ -11,14 +11,13 @@
                 <template v-for="review in reviews" :key="review._id">
                         <ReviewForm :review="review"
                                     :id="review._id"
-                                    @closeEditMode="setEditedItemId(null)"
+                                    @closeEditMode="clearEditedItemId"
                                     v-if="isEditMode(review._id)"
                         ></ReviewForm>
 
                         <ReviewItem :reviewId="review._id"
                                     :initialText="review.text"
                                     :initialAuthor="review.author"
-                                    @setEditedItemId="setEditedItemId"
                                     v-else
                         ></ReviewItem>
                 </template>
@@ -32,22 +31,17 @@ import { useReviewsStore } from "~/store/stores";
 import ReviewItem from "~/components/ReviewItem.vue";
 
 const reviewsStore = useReviewsStore();
-const editedItemId = ref(null);
 
 reviewsStore.getReviews();
 
-const { reviews } = storeToRefs(reviewsStore);
+const { reviews,editedItemId } = storeToRefs(reviewsStore);
 
-const setEditedItemId = (id) => {
-    editedItemId.value = id;
+const clearEditedItemId = () => {
+    reviewsStore.editedItemId(null);
 }
 const isEditMode = (id) => {
     return editedItemId.value === id;
 }
-
-// watch(reviews, () => {
-//     reviews.value = reviews;
-// }, {deep: true})
 
 </script>
 

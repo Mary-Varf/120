@@ -5,10 +5,14 @@ export const useReviewsStore = defineStore({
     state: () => {
         return {
             reviews: [],
+            editedItemId: null,
         }
     },
 
     actions: {
+        setEditedItemId(id) {
+            this.editedItemId = id;
+        },
         async getReviews() {
             const data = await $fetch('/api/reviews');
 
@@ -51,13 +55,12 @@ export const useReviewsStore = defineStore({
                     })
                     .catch((error)=> {
                         console.log(error)
-                    }) ;
+                    });
             //TODO: move to then
             this.reviews = [...this.reviews].map(el => {
                 if(el._id === id) return updatedReview
                 else return el;
             });
-            console.log(this.reviews);
         }
     }
 

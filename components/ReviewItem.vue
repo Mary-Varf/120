@@ -30,7 +30,7 @@
         reviewsStore.deleteReview(props.reviewId);
     }
     const handleUpdateItem = () => {
-        emit('set-edited-item-id', props.reviewId);
+        reviewsStore.setEditedItemId(props.reviewId)
     }
 </script>
 

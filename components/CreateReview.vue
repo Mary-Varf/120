@@ -5,7 +5,8 @@
         <div class="flex gap-4 items-start flex-row flex-wrap">
             <input :value="author"
                    @input="updateAuthorInput"
-                   ref="input"
+                   @click="clearEditedItemId"
+                   ref="authInput"
                    type="text"
                    class="px-4 py-2 rounded text-black"
             />
@@ -13,6 +14,7 @@
             <textarea rows="4"
                       cols="40"
                       type="text"
+                      @click="clearEditedItemId"
                       class="px-4 py-2 mr-2 rounded text-black"
                       :value="text"
                       @input="updateTextInput"
@@ -30,14 +32,14 @@
 import SaveIcon from "~/components/icons/SaveIcon.vue";
 import {useReviewsStore} from "~/store/stores";
 
-const input = ref(null);
+const authInput = ref(null);
 const author = ref(null);
 const text = ref(null);
 const reviewsStore = useReviewsStore();
 
 const focusInput = () => {
     nextTick(() => {
-        input?.value?.focus();
+        authInput?.value?.focus();
     });
 }
 const handleSaveReview = () => {
@@ -48,6 +50,11 @@ const clearInputs = () => {
     author.value = null;
     text.value = null;
 }
+
+const clearEditedItemId = () => {
+    reviewsStore.setEditedItemId(null);
+}
+
 const createReview = () => {
     reviewsStore.createReview({author: author.value, text: text.value});
 }
@@ -58,7 +65,9 @@ const updateTextInput = (event) => {
     text.value = event.target.value
 }
 
-focusInput();
+onMounted(() => {
+    focusInput();
+})
 
 </script>
 
