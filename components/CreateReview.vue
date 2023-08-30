@@ -1,8 +1,8 @@
 <template>
-    <div class="gb-gray-100 p-6 border-b-2 border-white-100 mb-7">
+    <div class="gb-gray-100 p-6 border-b-2 border-white-100 mb-7 w-screen absolute">
         <h5 class="font-bold mb-2">Add new review</h5>
 
-        <div class="flex gap-4 items-start">
+        <div class="flex gap-4 items-start flex-row flex-wrap">
             <input :value="author"
                    @input="updateAuthorInput"
                    ref="input"
@@ -13,7 +13,7 @@
             <textarea rows="4"
                       cols="40"
                       type="text"
-                      class="px-4 py-2 ml-2 rounded text-black"
+                      class="px-4 py-2 mr-2 rounded text-black"
                       :value="text"
                       @input="updateTextInput"
             />

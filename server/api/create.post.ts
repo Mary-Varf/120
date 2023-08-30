@@ -1,5 +1,6 @@
 // @ts-ignore
 import ReviewModel from '~/server/models/Review.model';
+
 export default defineEventHandler(async (event) => {
 
     const body = await readBody(event);

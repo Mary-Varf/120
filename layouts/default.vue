@@ -12,7 +12,7 @@
             </div>
         </header>
 
-        <main class="w-screen relative">
+        <main class="overflow-x-hidden mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <slot />
         </main>
 

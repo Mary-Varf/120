@@ -1,9 +1,9 @@
 <template>
     <tr>
-        <td class="pr-4 py-2 text-left">{{reviewItem.author}}</td>
-        <td class="pr-4 py-2 text-left">{{reviewItem.text}}</td>
+        <td class="pr-4 py-2 text-left">{{initialAuthor}}</td>
+        <td class="pr-4 py-2 text-left">{{initialText}}</td>
         <td class="pr-4 py-2">
-            <AppButton @click="updateReview"><UpdateIcon></UpdateIcon></AppButton>
+            <AppButton @click="handleUpdateItem"><UpdateIcon></UpdateIcon></AppButton>
         </td>
         <td class="pr-4 py-2">
             <AppButton @click="deleteItem"><DeleteIcon></DeleteIcon></AppButton>
@@ -17,23 +17,20 @@
     import UpdateIcon from "~/components/icons/UpdateIcon.vue";
     import {useReviewsStore} from "~/store/stores";
 
-    const review = defineProps({
-        review: Object,
+    const props = defineProps({
+        reviewId: {type: String},
+        initialAuthor: {type: String},
+        initialText: {type: String},
     })
-    const reviewItem = review.review;
+    const emit = defineEmits(['setEditedItemId']);
+    const reviewItem = props.review;
 
     const reviewsStore = useReviewsStore();
     const deleteItem = () => {
-        reviewsStore.deleteReview(reviewItem._id);
+        reviewsStore.deleteReview(props.reviewId);
     }
-    const openForm = () => {
-
-    }
-    const updateReview = () => {
-        reviewsStore.updateReview(reviewItem._id, {
-            author: '555',
-            text: 'sdfsd',
-        })
+    const handleUpdateItem = () => {
+        emit('set-edited-item-id', props.reviewId);
     }
 </script>
 
