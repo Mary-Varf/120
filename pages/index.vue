@@ -1,12 +1,14 @@
 <template>
-    <div class="py-6 sm:px-6 lg:px-8 text-gray-300 flex">
-        <ReviewTopics></ReviewTopics>
-
-        <ReviewBlock></ReviewBlock>
-    </div>
+    <AppMain v-if="user"></AppMain>
 </template>
 
 <script setup>
+import { storeToRefs } from 'pinia';
+import {useStore} from "~/store/stores";
+
+const membersStore = useStore();
+
+const { user } = storeToRefs(membersStore);
 </script>
 
 <style>

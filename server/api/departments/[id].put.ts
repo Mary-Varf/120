@@ -1,5 +1,4 @@
-// @ts-ignore
-import ReviewModel from "~/server/models/Review.model";
+import DepartmentModel from "~/server/models/Department.model";
 
 export default defineEventHandler(async (event) => {
     const body = await readBody(event);
@@ -7,7 +6,7 @@ export default defineEventHandler(async (event) => {
 
     console.log(body)
     try {
-        await ReviewModel.findByIdAndUpdate(id, body);
+        await DepartmentModel.findByIdAndUpdate(id, body);
         return { message: 'Review updated' };
     } catch(error) {
         throw createError({

@@ -2,17 +2,13 @@ import mongoose from 'mongoose';
 
 const schema: mongoose.Schema = new mongoose.Schema(
     {
-        author: {
+        department: {
             type: String,
             required: true,
         },
-        text: {
-            type: String,
-            required: true,
-        }
     },
     {
         timestamps: true
     }
 );
-export default mongoose.model('Review', schema);
+export default mongoose.model('Department', schema);

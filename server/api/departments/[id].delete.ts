@@ -1,10 +1,10 @@
-import ReviewModel from "~/server/models/Review.model";
+import DepartmentModel from "~/server/models/Department.model";
 
 export default defineEventHandler(async (event) => {
     const id = event?.context?.params?.id;
 
     try {
-        await ReviewModel.findByIdAndDelete(id);
+        await DepartmentModel.findByIdAndDelete(id);
         return { message: 'Review deleted' };
     } catch(error) {
         throw createError({

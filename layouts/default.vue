@@ -1,29 +1,13 @@
 <template>
-    <div class="min-h-full bg-gray-800 min-h-screen">
-        <header>
-            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div class="flex h-16 items-center justify-between">
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0">
-                            <img class="h-8 w-8" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
+    <div class=" h-full bg-gray-800">
+        <AppNav></AppNav>
 
-        <main class="overflow-x-hidden mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <slot />
-        </main>
-
-        <footer>
-
-        </footer>
+        <slot></slot>
     </div>
 </template>
 
 <script setup>
-
+import AppNav from "~/components/UI/AppNav.vue";
 </script>
 
 <style scoped>
