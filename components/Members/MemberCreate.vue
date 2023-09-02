@@ -10,6 +10,7 @@
 </template>
 
 <script setup>
+import MemberForm from "~/components/Members/MemberForm.vue";
 </script>
 
 <style scoped>

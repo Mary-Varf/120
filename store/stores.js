@@ -17,9 +17,10 @@ export const useStore = defineStore({
             members: [],
             editedItemId: null,
             departments: [],
-            isMobile: false,
             isLoggedIn: false,
             popupMsg: null,
+            isDepartmentsLoading: false,
+            isMembersLoading: false,
         }
     },
     getters: {
@@ -36,13 +37,18 @@ export const useStore = defineStore({
         setEditedItemId(id) {
             this.editedItemId = id;
         },
-        setIsMobileDevice(width) {
-            this.isMobile = width <= 768;
-        },
         setPopupMsg(msg) {
             this.popupMsg = msg;
         },
+        setStateIsMembersLoading(state) {
+            this.isMembersLoading = state;
+        },
+        setIsDepartmentsLoading(state) {
+            this.isDepartmentsLoading = state;
+         },
         async getDepartments() {
+            this.setIsDepartmentsLoading(true);
+
             await $fetch(`${departmentsApi}/departments`)
                 .then((resp) => {
                     this.departments = resp?.length ? resp : [];
@@ -50,6 +56,8 @@ export const useStore = defineStore({
                 .catch((error) => {
                     console.log(error)
                 })
+
+            this.setIsDepartmentsLoading(false);
         },
 
         async createDepartment (newDepartment) {
@@ -67,6 +75,8 @@ export const useStore = defineStore({
                 })
         },
         async getMembers() {
+            this.setStateIsMembersLoading(true);
+
             await $fetch(`${membersApi}/members`)
                 .then((resp) => {
                     this.members = resp?.length ? resp : [];
@@ -74,6 +84,8 @@ export const useStore = defineStore({
                 .catch((error) => {
                     console.log(error)
                 })
+
+            this.setStateIsMembersLoading(false);
         },
         async createMember (newMember) {
             await $fetch(`${membersApi}/create`, {

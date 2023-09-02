@@ -23,40 +23,43 @@
         </div>
     </nav>
 
-    <select class="md:hidden fixed top-2 right-2 block capitalize appearance-none w-[130px] bg-gray-200 border border-gray-200 text-gray-700 md:py-3 py-1 md:px-4 md:pr-8 pr-8 px-1.5 md:mr-4 md:ml-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 max-w-[250px] lg:max-w-[350px] xl:max-w-auto" id="grid-state"
-    >
-        <option class="capitalize"
-                :selected="uriDepartment == undefined"
-        >
-            <NuxtLink to="/">All</NuxtLink>
-        </option>
-        <option class="capitalize"
-                v-for="el in departments"
-                :key="el._id"
-                :value="el.department"
-                :selected="uriDepartment == el.department"
-        >
-            <NuxtLink :to="`/${el.department}`">{{ el?.department }}</NuxtLink>
-        </option>
-    </select>
-
+    <div class="flex flex-col">
+        <select class="md:hidden flex-1 overflow-y-auto capitalize appearance-none w-[130px] bg-gray-200 border border-gray-200 text-gray-700 md:py-3 py-1 md:px-4 md:pr-8 pr-8 px-1.5 md:mr-4 md:ml-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 max-w-[250px] lg:max-w-[350px] xl:max-w-auto" id="grid-state">
+            <option class="capitalize"
+                    :selected="uriDepartment == undefined"
+            >
+                <NuxtLink to="/">All</NuxtLink>
+            </option>
+            <option class="capitalize"
+                    v-for="el in departments"
+                    :key="el._id"
+                    :value="el.department"
+                    :selected="uriDepartment == el.department"
+            >
+                <NuxtLink :to="`/${el.department}`">{{ el?.department }}</NuxtLink>
+            </option>
+        </select>
+    </div>
 </template>
 
 <script setup>
 import SaveIcon from "~/components/icons/SaveIcon.vue";
-import AppButton from "~/components/AppButton.vue";
+import AppButton from "~/components/UI/AppButton.vue";
 import { useStore } from "~/store/stores";
 import {storeToRefs} from "pinia";
 import mongoose from "mongoose";
 
 const membersStore = useStore();
 const { departments } = storeToRefs(membersStore);
+const { uriDepartment } = useRoute().params;
+
 const isEditMode = ref(false);
 const newDepartment = ref(null);
-const { uriDepartment } = useRoute().params;
+
 const setIsEditMode = (state) => {
     isEditMode.value = state;
 }
+
 const updateInput = (event) => {
     newDepartment.value = event.target.value;
 }
@@ -73,6 +76,6 @@ const saveNewDepartment = () => {
 
 <style scoped>
 .router-link-exact-active {
-    background-color: #000;
+    background-color: rgb(30 64 175 / 0.8);;
 }
 </style>

@@ -1,15 +1,18 @@
 <template>
-    <div class="md:mt-24 mt-52 md:p-0 p-4 col-span-3 h-full bg-gray-800 w-full">
+    <div class="md:mt-24 mt-44 h-[calc(100%-6rem)] md:p-0 p-4 col-span-3 bg-gray-800 w-full">
         <MemberCreate class="-mt-2"></MemberCreate>
 
-        <div class="md:grid hidden grid-cols-4 gap-1 font-bold mb-2 p-2">
-            <div>Name</div>
-            <div>Surname</div>
-            <div>Department</div>
-            <div>Update/Delete</div>
-        </div>
+        <AppLoading v-if="isMembersLoading"></AppLoading>
 
-        <TransitionGroup name="members">
+        <template v-else>
+            <div class="md:grid hidden grid-cols-4 gap-1 font-bold mb-2 p-2">
+                <div>Name</div>
+                <div>Surname</div>
+                <div>Department</div>
+                <div>Update/Delete</div>
+            </div>
+
+            <TransitionGroup name="members">
             <template v-for="member in filteredMembers(department)"
                       :key="member._id"
             >
@@ -28,11 +31,15 @@
                 </div>
             </template>
         </TransitionGroup>
+        </template>
     </div>
 </template>
 
 <script setup>
-import MemberItem from "~/components/MemberItem.vue";
+import MemberItem from "~/components/Members/MemberItem.vue";
+import MemberForm from "~/components/Members/MemberForm.vue";
+import MemberCreate from "~/components/Members/MemberCreate.vue";
+import AppLoading from "~/components/UI/AppLoading.vue";
 import { storeToRefs } from 'pinia';
 import { useStore } from "~/store/stores";
 
@@ -41,7 +48,7 @@ const { department } = useRoute().params;
 
 membersStore.getMembers();
 
-const { editedItemId, filteredMembers } = storeToRefs(membersStore);
+const { editedItemId, filteredMembers, isMembersLoading } = storeToRefs(membersStore);
 
 const isEditMode = (id) => {
     return editedItemId.value === id;

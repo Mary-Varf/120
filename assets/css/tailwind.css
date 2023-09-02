@@ -6,16 +6,30 @@
     body {
         @apply bg-gray-800;
     }
-    .btn {
-        @apply bg-blue-200 border-white rounded  text-gray-800 font-bold text-sm hover:scale-105 cursor-pointer hover:text-gray-950 transition transition-all duration-300 px-1.5 py-1 md:px-3 md:py-2
-    }
-    .btn[disabled] {
-        @apply text-gray-500 hover:scale-100
-    }
     .sub-text {
         @apply text-[8px] text-gray-400 -mb-1
     }
     input, surnamearea {
         outline-color: transparent;
     }
+}
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

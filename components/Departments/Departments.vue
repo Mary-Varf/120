@@ -3,27 +3,23 @@
         <h2 class="mr-4 hidden md:block">Departments</h2>
     </div>
 
-    <DepartmentsNav></DepartmentsNav>
+    <AppLoading v-if="isDepartmentsLoading"></AppLoading>
+    <DepartmentsNav v-else></DepartmentsNav>
 </template>
 
 <script setup>
-import DepartmentsNav from "~/components/DepartmentsNav.vue";
+import DepartmentsNav from "~/components/Departments/DepartmentsNav.vue";
+import AppLoading from "~/components/UI/AppLoading.vue";
 import { useStore } from "~/store/stores";
 import { storeToRefs } from 'pinia';
 
 const membersStore = useStore();
-const isMenuOpened = ref(false);
 
 onMounted(() => {
     membersStore.getDepartments();
-    membersStore.setIsMobileDevice(window.innerWidth);
 })
 
-const { isMobile } = storeToRefs(membersStore);
-
-const toggleDepartments = () => {
-    isMenuOpened.value = !isMenuOpened.value;
-}
+const { isDepartmentsLoading } = storeToRefs(membersStore);
 </script>
 
 <style scoped>

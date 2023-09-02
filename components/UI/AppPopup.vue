@@ -18,8 +18,6 @@ watch((popupMsg), () => {
         membersStore.setPopupMsg(null);
     },1000)
 })
-onMounted(() => {
-})
 </script>
 
 <style scoped>
