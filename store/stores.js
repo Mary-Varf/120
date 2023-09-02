@@ -3,6 +3,13 @@ import { defineStore } from 'pinia';
 const membersApi = '/api/members';
 const departmentsApi = '/api/departments';
 
+const messages = {
+    create: 'Created',
+    update: 'Updated',
+    delete: 'Deleted',
+    error: 'Something went wrong'
+}
+
 export const useStore = defineStore({
     id: 'members-store',
     state: () => {
@@ -32,8 +39,8 @@ export const useStore = defineStore({
         setIsMobileDevice(width) {
             this.isMobile = width <= 768;
         },
-        setPopupMsg() {
-            this.popupMsg = 'sfsdd';
+        setPopupMsg(msg) {
+            this.popupMsg = msg;
         },
         async getDepartments() {
             await $fetch(`${departmentsApi}/departments`)
@@ -52,9 +59,11 @@ export const useStore = defineStore({
             })
                 .then((resp) => {
                     this.departments.push(newDepartment);
+                    this.setPopupMsg(messages.create);
                 })
                 .catch((error) => {
                     console.log(error)
+                    this.setPopupMsg(messages.error);
                 })
         },
         async getMembers() {
@@ -73,9 +82,11 @@ export const useStore = defineStore({
             })
                 .then((resp) => {
                     this.members.push(newMember);
+                    this.setPopupMsg(messages.create);
                 })
                 .catch((error) => {
                     console.log(error)
+                    this.setPopupMsg(messages.error);
                 })
         },
         async deleteMember(id) {
@@ -84,9 +95,11 @@ export const useStore = defineStore({
             })
                 .then((resp) => {
                     this.members = [...this.members].filter(el => el._id !== id);
+                    this.setPopupMsg(messages.delete);
                 })
                 .catch((error)=> {
                     console.log(error)
+                    this.setPopupMsg(messages.error);
                 }) ;
         },
         async updateMember(id, updatedMember) {
@@ -99,9 +112,11 @@ export const useStore = defineStore({
                         if(el._id === id) return updatedMember
                         else return el;
                     });
+                    this.setPopupMsg(messages.update);
                 })
                 .catch((error)=> {
                     console.log(error)
+                    this.setPopupMsg(messages.error);
                 });
         }
     }

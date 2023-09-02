@@ -12,12 +12,15 @@
         <h3 v-else>Please Log In</h3>
         {{ isLoggedIn }}
     </div>
+
+    <AppPopup></AppPopup>
 </template>
 
 <script setup>
-import AppAuth from './UI/AppAuth.vue';
+import AppAuth from '~/components/UI/AppAuth.vue';
 import { storeToRefs } from 'pinia';
 import {useStore} from "~/store/stores";
+import AppPopup from "~/components/UI/AppPopup.vue";
 
 const membersStore = useStore();
 const { isLoggedIn } = storeToRefs(membersStore);
