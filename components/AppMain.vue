@@ -18,17 +18,18 @@
 </template>
 
 <script setup>
+import { storeToRefs } from 'pinia';
 import AppPopup from "~/components/UI/AppPopup.vue";
 import AppAuth from '~/components/UI/AppAuth.vue';
-import { storeToRefs } from 'pinia';
 import {useStore} from "~/store/stores";
 
+const config = useRuntimeConfig();
 const membersStore = useStore();
 const { isLoggedIn } = storeToRefs(membersStore);
-const config = useRuntimeConfig();
 
 const getStateIsLoggedInCookie = () => {
-    return useCookie(`auth0.${config.public.AUTH0_CLIENT_ID}.is.authenticated`).value;
+    const key =`auth0.${config.public.AUTH0_CLIENT_ID}.is.authenticated`;
+    return useCookie(key).value;
 }
 
 onMounted(() => {

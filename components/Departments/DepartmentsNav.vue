@@ -43,11 +43,11 @@
 </template>
 
 <script setup>
+import mongoose from "mongoose";
+import {storeToRefs} from "pinia";
 import SaveIcon from "~/components/icons/SaveIcon.vue";
 import AppButton from "~/components/UI/AppButton.vue";
 import { useStore } from "~/store/stores";
-import {storeToRefs} from "pinia";
-import mongoose from "mongoose";
 
 const membersStore = useStore();
 const { departments } = storeToRefs(membersStore);
@@ -75,7 +75,4 @@ const saveNewDepartment = () => {
 </script>
 
 <style scoped>
-.router-link-exact-active {
-    background-color: rgb(30 64 175 / 0.8);;
-}
 </style>

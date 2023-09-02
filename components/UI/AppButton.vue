@@ -5,14 +5,7 @@
 </template>
 
 <script setup>
-
 </script>
 
 <style scoped>
-    button {
-        cursor: pointer;
-    }
-    button:disabled {
-        cursor: not-allowed;
-    }
 </style>

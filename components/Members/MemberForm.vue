@@ -37,17 +37,18 @@
         <div class="self-center md:relative absolute top-0 -right-1.5 md:ml-4">
             <AppButton @click="handleSave"
                        :disabled="!name?.length || !surname?.length || !selectedDepartment?.length"
-            ><SaveIcon></SaveIcon></AppButton>
+            ><SaveIcon></SaveIcon>
+            </AppButton>
         </div>
     </div>
 </template>
 
 <script setup>
+import mongoose from "mongoose";
+import {storeToRefs} from "pinia";
 import SaveIcon from "~/components/icons/SaveIcon.vue";
 import AppButton from "~/components/UI/AppButton.vue";
 import {useStore} from "~/store/stores";
-import {storeToRefs} from "pinia";
-import mongoose from "mongoose";
 
 const props = defineProps({
     member: {
@@ -60,12 +61,12 @@ const props = defineProps({
     }
 })
 
+const membersStore = useStore();
+const { departments } = storeToRefs(membersStore);
 const name = ref(null);
 const surname = ref(null);
 const selectedDepartment = ref(null);
 const input = ref(null);
-const membersStore = useStore();
-const { departments } = storeToRefs(membersStore);
 
 const focusInput = () => {
     nextTick(() => {
@@ -84,6 +85,7 @@ const updateSurnameInput = (event) => {
 const clearEditedItemId = () => {
     membersStore.setEditedItemId(null);
 }
+
 const handleSave = () => {
     clearEditedItemId();
 
@@ -95,6 +97,7 @@ const handleSave = () => {
 const isNewMember = () => {
     return !props.id;
 }
+
 const updateMember = () => {
     membersStore.updateMember(props.id, {
         ...props.member,
@@ -103,6 +106,7 @@ const updateMember = () => {
         department: selectedDepartment.value,
     });
 }
+
 const createMember = () => {
     membersStore.createMember({
         _id: new mongoose.Types.ObjectId().toString(),
@@ -111,6 +115,7 @@ const createMember = () => {
         department: selectedDepartment.value,
     });
 }
+
 const clearInputs = () => {
     name.value = null;
     surname.value = null;

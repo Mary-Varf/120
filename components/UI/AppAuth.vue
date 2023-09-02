@@ -14,12 +14,13 @@
 import AppButton from "~/components/UI/AppButton.vue";
 import { useStore } from "~/store/stores";
 import auth0 from "~/server/auth0";
-const membersStore = useStore();
 
 const config = useRuntimeConfig();
+const membersStore = useStore();
 
 const checkIsLoggedIn = () => {
-    return useCookie(`auth0.${config.public.AUTH0_CLIENT_ID}.is.authenticated`).value;
+    const key = `auth0.${config.public.AUTH0_CLIENT_ID}.is.authenticated`;
+    return useCookie(key).value;
 }
 
 const login = async () => {

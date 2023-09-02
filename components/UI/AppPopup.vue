@@ -7,8 +7,8 @@
 </template>
 
 <script setup>
-import {useStore} from "~/store/stores";
 import {storeToRefs} from "pinia";
+import {useStore} from "~/store/stores";
 
 const membersStore = useStore();
 const { popupMsg } = storeToRefs(membersStore);
