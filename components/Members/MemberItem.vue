@@ -1,10 +1,10 @@
 <template>
-    <div class="md:grid hidden grid-cols-4 gap-1 capitalize hover:bg-gray-700 p-2"
+    <div class="md:grid hidden grid-cols-4 capitalize hover:bg-gray-700"
          @click="closeForm">
-        <div class="break-all">{{initialName}}</div>
-        <div class="break-all">{{initialSurname}}</div>
-        <div class="break-all">{{initialDepartment}}</div>
-        <div class="flex items-start">
+        <div class="break-all border-b border-slate-700 py-2">{{initialName}}</div>
+        <div class="break-all border-b border-slate-700 py-2">{{initialSurname}}</div>
+        <div class="break-all border-b border-slate-700 py-2">{{initialDepartment}}</div>
+        <div class="flex items-start py-2">
             <AppButton class="mr-4"
                        @click="setEditedItemId(props.memberId)">
                 <UpdateIcon></UpdateIcon>
@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    <div class="md:hidden flex justify-between border-b-2 border-white-100 mb-4"
+    <div class="md:hidden flex justify-between border-b border-slate-700 py-2"
          @click="closeForm">
         <div>
             <div class="sub-text">Name:</div>
