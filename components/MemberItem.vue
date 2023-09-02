@@ -1,36 +1,35 @@
 <template>
-    <tr v-if="isMobile">
-        <td class="pr-4 py-2 text-left capitalize">{{initialName}}</td>
-        <td class="pr-4 py-2 text-left capitalize">{{initialSurname}}</td>
-        <td class="pr-4 py-2 text-left capitalize">{{initialDepartment}}</td>
-        <td class="pr-4 py-2">
-            <AppButton @click="handleUpdateItem"><UpdateIcon></UpdateIcon></AppButton>
-        </td>
-        <td class="pr-4 py-2">
-            <AppButton @click="deleteItem"><DeleteIcon></DeleteIcon></AppButton>
-        </td>
-    </tr>
-
-    <td v-if="!isMobile" class="border-b-2 border-white-100 w-7/8">
-        <div class="text-[8px] text-gray-400">Name:</div>
-        <div>{{initialName}}</div>
-        <div class="text-[8px] text-gray-400">Surname:</div>
-        <div>{{initialSurname}}</div>
-        <div class="text-[8px] text-gray-400">Department:</div>
-        <div>{{initialDepartment}}</div>
-        <div>
-            <AppButton @click="handleUpdateItem"><UpdateIcon></UpdateIcon></AppButton>
+    <div class="md:grid hidden grid-cols-4 gap-1 capitalize hover:bg-gray-700 p-2">
+        <div class="break-all">{{initialName}}</div>
+        <div class="break-all">{{initialSurname}}</div>
+        <div class="break-all">{{initialDepartment}}</div>
+        <div class="flex">
+            <AppButton class="mr-4" @click="handleUpdateItem"><UpdateIcon></UpdateIcon></AppButton>
             <AppButton @click="deleteItem"><DeleteIcon></DeleteIcon></AppButton>
         </div>
-    </td>
+    </div>
+
+    <div class="md:hidden flex justify-between border-b-2 border-white-100 mb-4">
+        <div>
+            <div class="sub-text">Name:</div>
+            <div class="mr-[100px]">{{initialName}}</div>
+            <div class="sub-text">Surname:</div>
+            <div>{{initialSurname}}</div>
+            <div class="sub-text">Department:</div>
+            <div>{{initialDepartment}}</div>
+        </div>
+        <div class="">
+            <AppButton class="mr-2" @click="handleUpdateItem"><UpdateIcon></UpdateIcon></AppButton>
+            <AppButton @click="deleteItem"><DeleteIcon></DeleteIcon></AppButton>
+        </div>
+    </div>
 </template>
 
 <script setup>
+    import UpdateIcon from "~/components/icons/UpdateIcon.vue";
     import DeleteIcon from "~/components/icons/DeleteIcon.vue";
     import AppButton from "~/components/AppButton.vue";
-    import UpdateIcon from "~/components/icons/UpdateIcon.vue";
     import {useStore} from "~/store/stores";
-    import {storeToRefs} from "pinia";
 
     const props = defineProps({
         memberId: {type: String},
@@ -38,15 +37,14 @@
         initialSurname: {type: String},
         initialDepartment: {type: String},
     })
-    const memberItem = props.member;
 
     const membersStore = useStore();
 
-    const { isMobile } = storeToRefs(membersStore);
     const deleteItem = () => {
         membersStore.deleteMember(props.memberId);
     }
     const handleUpdateItem = () => {
+        console.log('click')
         membersStore.setEditedItemId(props.memberId)
     }
 </script>

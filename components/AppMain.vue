@@ -1,31 +1,35 @@
 <template>
-    <div class="py-6 sm:px-6 lg:px-8 text-gray-300 flex"
-    >
-        <Departments></Departments>
+    <div class="xl:container m-auto md:py-6 py-0 sm:px-6 lg:px-8 bg-gray-800 text-gray-300 grid md:grid-cols-4 max-w-screen">
+        <aside class="col-span-1 pr-7 bg-gray-800 h-full">
+            <div class="pt-2 pb-[110px] fixed flex-col flex items-start justify-between bg-gray-800 max-w-[300px] md:max-w-[190px]">
+                <AppAuth class="mb-16"></AppAuth>
 
-        <MembersBlock></MembersBlock>
+                <Departments v-if="isLoggedIn"></Departments>
+            </div>
+        </aside>
+
+        <MembersTable v-if="isLoggedIn"></MembersTable>
+        <h3 v-else>Please Log In</h3>
+        {{ isLoggedIn }}
     </div>
 </template>
 
 <script setup>
+import AppAuth from './UI/AppAuth.vue';
 import { storeToRefs } from 'pinia';
 import {useStore} from "~/store/stores";
-import auth0 from "~/store/auth0.js";
 
-const config = useRuntimeConfig();
 const membersStore = useStore();
+const { isLoggedIn } = storeToRefs(membersStore);
+const config = useRuntimeConfig();
 
-const login = async () => {
-    await auth0.loginWithPopup();
-    membersStore.setUser(await auth0.getUser());
+const getStateIsLoggedInCookie = () => {
+    return useCookie(`auth0.${config.public.AUTH0_CLIENT_ID}.is.authenticated`).value;
 }
 
-const logout = async () => {
-    await auth0.logout();
-    membersStore.setUser(null);
-}
-
-const { user } = storeToRefs(membersStore);
+onMounted(() => {
+    membersStore.setStateIsLoggedIn(getStateIsLoggedInCookie());
+})
 </script>
 
 <style>

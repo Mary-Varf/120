@@ -1,34 +1,38 @@
 <template>
-    <table class="w-4/5 table mt-32 ml-4">
-            <tr>
-                <th class="pr-4 py-2 text-left w-1/4">Name</th>
-                <th class="pr-4 py-2 text-left w-1/4">Surname</th>
-                <th class="pr-4 py-2 text-left w-1/4">Department</th>
-                <th class="pr-4 py-2 text-left w-1/8">Update</th>
-                <th class="pr-4 py-2 text-left w-1/8">Delete</th>
-            </tr>
+    <div class="md:mt-24 mt-52 md:p-0 p-4 col-span-3 h-full bg-gray-800 w-full">
+        <MemberCreate class="-mt-2"></MemberCreate>
 
-            <TransitionGroup name="tableRows">
-                <template v-for="member in filteredMembers(department)"
-                          :key="member._id"
-                >
-                        <MemberForm :member="member"
-                                    :id="member._id"
-                                    v-if="isEditMode(member._id)"
-                        ></MemberForm>
+        <div class="md:grid hidden grid-cols-4 gap-1 font-bold mb-2 p-2">
+            <div>Name</div>
+            <div>Surname</div>
+            <div>Department</div>
+            <div>Update/Delete</div>
+        </div>
 
-                        <MemberItem :memberId="member._id"
-                                    :initialName="member.name"
-                                    :initialSurname="member.surname"
-                                    :initialDepartment="member.department"
-                                    v-else
-                        ></MemberItem>
-                </template>
-            </TransitionGroup>
-        </table>
+        <TransitionGroup name="members">
+            <template v-for="member in filteredMembers(department)"
+                      :key="member._id"
+            >
+                <div v-if="isEditMode(member._id)">
+                    <MemberForm :member="member"
+                                :id="member._id"
+                    ></MemberForm>
+                </div>
+
+                <div v-else>
+                    <MemberItem :memberId="member._id"
+                                :initialName="member.name"
+                                :initialSurname="member.surname"
+                                :initialDepartment="member.department"
+                    ></MemberItem>
+                </div>
+            </template>
+        </TransitionGroup>
+    </div>
 </template>
 
 <script setup>
+import MemberItem from "~/components/MemberItem.vue";
 import { storeToRefs } from 'pinia';
 import { useStore } from "~/store/stores";
 
@@ -46,12 +50,12 @@ const isEditMode = (id) => {
 </script>
 
 <style scoped>
-.tableRows-enter-active,
-.tableRows-leave-active {
+.members-enter-active,
+.members-leave-active {
     transition: all 0.5s ease;
 }
-.tableRows-enter-from,
-.tableRows-leave-to {
+.members-enter-from,
+.members-leave-to {
     opacity: 0;
     transform: translateY(30px);
 }

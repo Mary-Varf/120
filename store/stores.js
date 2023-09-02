@@ -1,5 +1,8 @@
 import { defineStore } from 'pinia';
 
+const membersApi = '/api/members';
+const departmentsApi = '/api/departments';
+
 export const useStore = defineStore({
     id: 'members-store',
     state: () => {
@@ -8,7 +11,8 @@ export const useStore = defineStore({
             editedItemId: null,
             departments: [],
             isMobile: false,
-            user: null,
+            isLoggedIn: false,
+            popupMsg: null,
         }
     },
     getters: {
@@ -19,14 +23,20 @@ export const useStore = defineStore({
         },
     },
     actions: {
-        setUser(user) {
-            this.user = user;
+        setStateIsLoggedIn(state) {
+            this.isLoggedIn = state;
         },
         setEditedItemId(id) {
             this.editedItemId = id;
         },
+        setIsMobileDevice(width) {
+            this.isMobile = width <= 768;
+        },
+        setPopupMsg() {
+            this.popupMsg = 'sfsdd';
+        },
         async getDepartments() {
-            await $fetch('/api/departments/departments')
+            await $fetch(`${departmentsApi}/departments`)
                 .then((resp) => {
                     this.departments = resp?.length ? resp : [];
                 })
@@ -36,7 +46,7 @@ export const useStore = defineStore({
         },
 
         async createDepartment (newDepartment) {
-            await $fetch('/api/departments/create', {
+            await $fetch(`${departmentsApi}/create`, {
                 method: 'POST',
                 body: newDepartment,
             })
@@ -48,7 +58,7 @@ export const useStore = defineStore({
                 })
         },
         async getMembers() {
-            await $fetch('/api/members/members')
+            await $fetch(`${membersApi}/members`)
                 .then((resp) => {
                     this.members = resp?.length ? resp : [];
                 })
@@ -57,7 +67,7 @@ export const useStore = defineStore({
                 })
         },
         async createMember (newMember) {
-            await $fetch('/api/members/create', {
+            await $fetch(`${membersApi}/create`, {
                 method: 'POST',
                 body: newMember,
             })
@@ -69,7 +79,7 @@ export const useStore = defineStore({
                 })
         },
         async deleteMember(id) {
-            await $fetch(`/api/members/${id}`, {
+            await $fetch(`${membersApi}/${id}`, {
                 method: 'DELETE'
             })
                 .then((resp) => {
@@ -80,21 +90,19 @@ export const useStore = defineStore({
                 }) ;
         },
         async updateMember(id, updatedMember) {
-            console.log(updatedMember),
-                await $fetch(`/api/members/${id}`, {
-                    method: 'PUT',
-                    body: updatedMember,
-                })
-                    .then((resp) => {
-                        this.members = [...this.members].map(el => {
-                            if(el._id === id) return updatedMember
-                            else return el;
-                        });
-                    })
-                    .catch((error)=> {
-                        console.log(error)
+            await $fetch(`${membersApi}/${id}`, {
+                method: 'PUT',
+                body: updatedMember,
+            })
+                .then((resp) => {
+                    this.members = [...this.members].map(el => {
+                        if(el._id === id) return updatedMember
+                        else return el;
                     });
+                })
+                .catch((error)=> {
+                    console.log(error)
+                });
         }
     }
-
 })

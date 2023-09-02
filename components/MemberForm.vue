@@ -1,48 +1,45 @@
 <template>
-    <tr>
-        <td class="py-2 text-left w-1/4">
-            <input placeholder="Name"
-                   ref="input"
-                   type="surname"
-                   class="px-4 py-2 rounded text-black items-start"
-                   :value="name"
-                   @input="updateNameInput"
-            />
-        </td>
+    <div class="grid md:grid-cols-4 gap-2 relative w-full pr-10 z-[40] px-0 md:px-2 md:border-b-0 md:border-transparent border-b-2 border-white pb-2 md:pb-0">
+        <input placeholder="Name"
+               ref="input"
+               type="text"
+               class="md:px-4 px-2 md:py-2 py-1 md:mr-4 rounded text-black items-start max-w-[250px] lg:max-w-[350px] xl:max-w-auto"
+               :value="name"
+               @input="updateNameInput"
+        />
 
-        <td class="py-2 text-left w-1/4">
-            <input type="text"
-                   placeholder="Surname"
-                   :value="surname"
-                   @input="updateSurnameInput"
-                   class="px-4 py-2 rounded text-black"
-            />
-        </td>
+        <input type="text"
+               placeholder="Surname"
+               :value="surname"
+               @input="updateSurnameInput"
+               class="md:px-4 px-2 md:py-2 py-1 rounded text-black items-start max-w-[250px] lg:max-w-[350px] xl:max-w-auto"
+        />
 
-        <td class="w-1/4">
-            <select v-model="selectedDepartment"
-                    class="block capitalize appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state"
+        <select v-model="selectedDepartment"
+                class="block capitalize appearance-none md:w-[90%] bg-gray-200 border border-gray-200 text-gray-700 md:py-3 py-1.5 md:px-4 md:pr-8 pr-8 px-2 md:mr-4 md:ml-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 max-w-[250px] lg:max-w-[350px] xl:max-w-auto" id="grid-state"
+        >
+            <option disabled
+                    v-if="id == null"
+                    :value="null"
+                    :selected="selectedDepartment == null || selectedDepartment == ''"
+            >Please select department</option>
+
+            <option class="capitalize"
+                    v-for="el in departments"
+                    :key="el._id"
+                    :value="el.department"
+                    :selected="selectedDepartment == el.department"
             >
-                <option disabled
-                        v-if="id == null"
-                        :value="null"
-                >Please select department</option>
+                {{ el?.department }}
+            </option>
+        </select>
 
-                <option class="capitalize"
-                        v-for="item in departments"
-                        :key="item._id"
-                        :value="item.department"
-                        :selected="selectedDepartment == item.department"
-                >
-                    {{item.department}}
-                </option>
-            </select>
-        </td>
-
-        <td class="w-1/4 h-full flex align-middle"><AppButton @click="handleSave"
+        <div class="self-center md:relative absolute top-0 -right-1.5 md:ml-4">
+            <AppButton @click="handleSave"
                        :disabled="!name?.length || !surname?.length || !selectedDepartment?.length"
-        ><SaveIcon></SaveIcon></AppButton></td>
-    </tr>
+            ><SaveIcon></SaveIcon></AppButton>
+        </div>
+    </div>
 </template>
 
 <script setup>
@@ -124,14 +121,11 @@ const clearInputs = () => {
 onMounted(() => {
     name.value = props.member?.name ?? '';
     surname.value = props.member?.surname ?? '';
-    selectedDepartment.value = props.member?.department ?? '';
+    selectedDepartment.value = props.member?.department ?? null;
 })
 
 focusInput();
 </script>
 
 <style>
-    input, surnamearea {
-        outline-color: transparent;
-    }
 </style>
