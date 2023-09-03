@@ -36,19 +36,19 @@ This project uses  `npm`  for development.
 #### Steps
 1) Clone repository:
    `git clone https://github.com/Mary-Varf/120.git`
-2) Create `.env` in root directory
-3) Open 120 directory `cd 120`
+2) Open 120 directory `cd 120`
+3) Rename `.env.example` to `.env` in root directory
 4) Install forcibly dependencies`npm install --force`
 5) Please visit [MongoDB](https://cloud.mongodb.com/), create database and generate *connection String URI* like it described in [documentation](https://www.mongodb.com/docs/manual/reference/connection-string/) and pass it as value of `MANGO_URI` in `.env`
-6) Create in you MongoDB table `department` and at least one item in format: `name: String`
-7) Visite [Auth0](https://manage.auth0.com/), create application, in the application settings get Domain, Client ID and save these values in to `.env` as `AUTH0_DOMAIN`, `AUTH0_CLIENT_ID`, also add `http://localhost:3000/` to Allowed Callback URLs and Allowed Logout URLs in settings
-8) Run development `npm run dev`
+6) Visit [Auth0](https://manage.auth0.com/), create application, in the application settings get Domain, Client ID and save these values in to `.env` as `AUTH0_DOMAIN`, `AUTH0_CLIENT_ID`, also add `http://localhost:3000/` to Allowed Callback URLs and Allowed Logout URLs in settings.
+7) Run development `npm run dev`
 
 ## Deployment
-1) Create Git repository with your app.
+1) Create Git repository with your app
 2) Register in [Vercel](https://vercel.com/)
-3) Connect Vercel and created Git repository.
+3) Connect Vercel and created Git repository
 4) In Auth0 settings add new callback URLs(your Vercel project page URI)
-5) Open created project in Vercel and in Settings -> Environment Variables and set `AUTH0_CALLBACK_URL`, `MANGO_URI`, `AUTH0_CLIENT_ID` based on `.env`. `AUTH0_DOMAIN` is your Vercel project domain.
-6) In Vercel Deployment redeploy the last one.
-7) In Project press Visit button.
+5) Open created project in Vercel and in Settings -> Environment Variables and set `AUTH0_CALLBACK_URL`, `MANGO_URI`, `AUTH0_CLIENT_ID` based on `.env`. `AUTH0_DOMAIN` is your Vercel project domain
+6) In Settings -> Build & Development Settings in Install Command as `npm  install --force`
+7) In Vercel Deployment redeploy the last one
+8) In Project press Visit button
