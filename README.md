@@ -20,15 +20,8 @@ Please visit [DEMO PAGE](https://120-hhg8.vercel.app/)
 <p>Authorization is available for visitors.</p>
 <p>Authorized user can read, create, update and delete team members. Creating new departments is also available</p>
 
-## Endpoints
-REST API:
-
-- GET members `/api/members/all`
-- POST member `/api/members/create`
-- PUT member `/api/members/[id]`
-- DELETE member `/api/members/[id]`
-- GET departments `/api/departments/all`
-- POST department `/api/departments/create`
+## API documentation
+[Here you can find API documentation](https://app.swaggerhub.com/apis-docs/BMA1989/120/0.0.1)
 
 
 ##  Development
