@@ -21,7 +21,7 @@ Please visit [DEMO PAGE](https://120-hhg8.vercel.app/)
 <p>Authorized user can read, create, update and delete team members. Creating new departments is also available</p>
 
 ## API documentation
-[Here you can find API documentation](https://app.swaggerhub.com/apis-docs/BMA1989/120/0.0.1)
+[Here you can find API documentation](https://app.swaggerhub.com/apis-docs/BMA1989/120-hhg8/1.0.0)
 
 
 ##  Development
