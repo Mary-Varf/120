@@ -2,13 +2,13 @@
     <div class="text-white bg-black fixed bottom-0 right-0 px-3 py-1 rounded text-[8px]"
          v-show="popupMsg"
     >
-        {{popupMsg}}
+        {{ popupMsg }}
     </div>
 </template>
 
 <script setup>
-import {storeToRefs} from "pinia";
-import {useStore} from "~/store/stores";
+import { storeToRefs } from "pinia";
+import { useStore } from "~/store/stores";
 
 const membersStore = useStore();
 const { popupMsg } = storeToRefs(membersStore);

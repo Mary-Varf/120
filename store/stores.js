@@ -1,14 +1,5 @@
 import { defineStore } from 'pinia';
-
-const membersApi = '/api/members';
-const departmentsApi = '/api/departments';
-
-const messages = {
-    create: 'Created',
-    update: 'Updated',
-    delete: 'Deleted',
-    error: 'Something went wrong'
-}
+import { API, MESSAGES }  from './consts';
 
 export const useStore = defineStore({
     id: 'members-store',
@@ -49,7 +40,7 @@ export const useStore = defineStore({
         async getDepartments() {
             this.setIsDepartmentsLoading(true);
 
-            await $fetch(`${departmentsApi}/all`)
+            await $fetch(`${API.DEPARTMENTS}/all`)
                 .then((resp) => {
                     this.departments = resp?.length ? resp : [];
                 })
@@ -61,23 +52,23 @@ export const useStore = defineStore({
         },
 
         async createDepartment (newDepartment) {
-            await $fetch(`${departmentsApi}/create`, {
+            await $fetch(`${API.DEPARTMENTS}/create`, {
                 method: 'POST',
                 body: newDepartment,
             })
                 .then((resp) => {
                     this.departments.push(newDepartment);
-                    this.setPopupMsg(messages.create);
+                    this.setPopupMsg(MESSAGES.CREATE);
                 })
                 .catch((error) => {
                     console.log(error)
-                    this.setPopupMsg(messages.error);
+                    this.setPopupMsg(MESSAGES.ERROR);
                 })
         },
         async getMembers() {
             this.setStateIsMembersLoading(true);
 
-            await $fetch(`${membersApi}/all`)
+            await $fetch(`${API.MEMBERS}/all`)
                 .then((resp) => {
                     this.members = resp?.length ? resp : [];
                 })
@@ -88,34 +79,34 @@ export const useStore = defineStore({
             this.setStateIsMembersLoading(false);
         },
         async createMember (newMember) {
-            await $fetch(`${membersApi}/create`, {
+            await $fetch(`${API.MEMBERS}/create`, {
                 method: 'POST',
                 body: newMember,
             })
                 .then((resp) => {
                     this.members.push(newMember);
-                    this.setPopupMsg(messages.create);
+                    this.setPopupMsg(MESSAGES.CREATE);
                 })
                 .catch((error) => {
                     console.log(error)
-                    this.setPopupMsg(messages.error);
+                    this.setPopupMsg(MESSAGES.ERROR);
                 })
         },
         async deleteMember(id) {
-            await $fetch(`${membersApi}/${id}`, {
+            await $fetch(`${API.MEMBERS}/${id}`, {
                 method: 'DELETE'
             })
                 .then((resp) => {
                     this.members = [...this.members].filter(el => el._id !== id);
-                    this.setPopupMsg(messages.delete);
+                    this.setPopupMsg(MESSAGES.DELETE);
                 })
                 .catch((error)=> {
                     console.log(error)
-                    this.setPopupMsg(messages.error);
+                    this.setPopupMsg(MESSAGES.ERROR);
                 }) ;
         },
         async updateMember(id, updatedMember) {
-            await $fetch(`${membersApi}/${id}`, {
+            await $fetch(`${API.MEMBERS}/${id}`, {
                 method: 'PUT',
                 body: updatedMember,
             })
@@ -124,11 +115,11 @@ export const useStore = defineStore({
                         if(el._id === id) return updatedMember
                         else return el;
                     });
-                    this.setPopupMsg(messages.update);
+                    this.setPopupMsg(MESSAGES.UPDATE);
                 })
                 .catch((error)=> {
                     console.log(error)
-                    this.setPopupMsg(messages.error);
+                    this.setPopupMsg(MESSAGES.ERROR);
                 });
         }
     }

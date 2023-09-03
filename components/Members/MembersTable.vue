@@ -25,6 +25,7 @@
                     >
                         <MemberForm :member="member"
                                     :id="member._id"
+                                    v-show="isLoggedIn"
                         ></MemberForm>
                     </div>
 

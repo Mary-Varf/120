@@ -45,10 +45,10 @@
 
 <script setup>
 import mongoose from "mongoose";
-import {storeToRefs} from "pinia";
+import { storeToRefs } from "pinia";
 import SaveIcon from "~/components/icons/SaveIcon.vue";
 import AppButton from "~/components/UI/AppButton.vue";
-import {useStore} from "~/store/stores";
+import { useStore } from "~/store/stores";
 
 const props = defineProps({
     member: {
@@ -63,6 +63,7 @@ const props = defineProps({
 
 const membersStore = useStore();
 const { departments } = storeToRefs(membersStore);
+
 const name = ref(null);
 const surname = ref(null);
 const selectedDepartment = ref(null);
@@ -120,7 +121,6 @@ const clearInputs = () => {
     name.value = null;
     surname.value = null;
     selectedDepartment.value = null;
-
 }
 
 onMounted(() => {

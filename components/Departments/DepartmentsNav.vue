@@ -7,7 +7,7 @@
                   class="capitalize text-black hover:bg-blue-200 hover:text-black rounded-md px-3 py-2 text-sm font-medium break-all"
                   v-for="item in departments"
                   :key="item._id"
-        >{{item.name}}</NuxtLink>
+        >{{ item.name }}</NuxtLink>
 
         <div class="flex items-center pb-2 border-b"
              v-if="isEditMode">
@@ -44,7 +44,12 @@ const isEditMode = ref(false);
 const newDepartment = ref(null);
 const isOpenedMenu = ref(true);
 
+const clearInput = () => {
+    newDepartment.value = null;
+}
+
 const setIsEditMode = (state) => {
+    clearInput();
     isEditMode.value = state;
 }
 
