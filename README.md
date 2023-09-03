@@ -1,4 +1,4 @@
-# Frontend - CMS CODE 530!
+# Task-Frontend-1 CODE 530!
 
 Hi! My name is [Mariia Varfolomeeva](https://drive.google.com/file/d/1taoc2hsRtHzncyy9ao37gZQ_K-QCPl3B/view?usp=sharing).
 <p>This app was implemented on Vue3/Nuxt3, Pinia, MangoDB, Auth0, Tailwindcss.</p>
