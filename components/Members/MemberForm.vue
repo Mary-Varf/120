@@ -26,10 +26,10 @@
             <option class="capitalize form-item"
                     v-for="el in departments"
                     :key="el._id"
-                    :value="el.department"
-                    :selected="selectedDepartment == el.department"
+                    :value="el.name"
+                    :selected="selectedDepartment == el.name"
             >
-                {{ el?.department }}
+                {{ el?.name }}
             </option>
         </select>
 

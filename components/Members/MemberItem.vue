@@ -2,10 +2,10 @@
     <div class="md:grid hidden capitalize hover:bg-blue-200 gap-1"
          :class="isLoggedIn ? 'grid-cols-4' : 'grid-cols-3'"
          @click="closeForm">
-        <div class="break-all border-b border-blue-200 py-2">{{initialName}}</div>
-        <div class="break-all border-b border-blue-200 py-2">{{initialSurname}}</div>
-        <div class="break-all border-b border-blue-200 py-2">{{initialDepartment}}</div>
-        <div class="flex items-start py-2" v-show="isLoggedIn">
+        <div class="break-all border-b border-blue-200 py-2 px-2">{{initialName}}</div>
+        <div class="break-all border-b border-blue-200 py-2 px-2">{{initialSurname}}</div>
+        <div class="break-all border-b border-blue-200 py-2 px-2">{{initialDepartment}}</div>
+        <div class="flex items-start py-2 px-2" v-show="isLoggedIn">
             <AppButton class="mr-4"
                        @click="setEditedItemId(props.memberId)">
                 <UpdateIcon></UpdateIcon>

@@ -1,6 +1,6 @@
 <template>
     <div class=" md:p-0 p-4 col-span-3 bg-gray-100 w-full"
-         :class="{'md:mt-24 mt-44 h-[calc(100%-6rem)]': isLoggedIn}"
+         :class="{'md:mt-24 mt-[140px] h-[calc(100%-6rem)]': isLoggedIn}"
     >
         <MemberCreate v-show="isLoggedIn" class="-mt-2"></MemberCreate>
 

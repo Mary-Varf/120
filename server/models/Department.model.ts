@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const schema: mongoose.Schema = new mongoose.Schema(
     {
-        department: {
+        name: {
             type: String,
             required: true,
         },
