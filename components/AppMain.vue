@@ -1,17 +1,14 @@
 <template>
     <div class="xl:container m-auto md:py-6 py-0 sm:px-6 lg:px-8 bg-gray-800 text-gray-300 flex flex-col md:grid md:grid-cols-4 max-w-screen flex h-screen">
-        <aside class="md:col-span-1 pr-7 bg-gray-800">
+        <aside class="md:col-span-1 bg-gray-800 pr-2">
             <div class="pt-2 md:flex-col flex items-start justify-between bg-gray-800 md:max-w-[190px]">
                 <AppAuth></AppAuth>
 
-                <Departments v-if="isLoggedIn"></Departments>
+                <Departments></Departments>
             </div>
         </aside>
 
-        <MembersTable class="flex-1 overflow-y-auto" v-if="isLoggedIn"></MembersTable>
-        <h3 class="absolute top-20 left-[50%] transform translate-x-[-50%]"
-            v-else
-        >Please Log In</h3>
+        <MembersTable class="flex-1 overflow-y-auto overflow-x-hidden"></MembersTable>
     </div>
 
     <AppPopup></AppPopup>
@@ -21,7 +18,7 @@
 import { storeToRefs } from 'pinia';
 import AppPopup from "~/components/UI/AppPopup.vue";
 import AppAuth from '~/components/UI/AppAuth.vue';
-import {useStore} from "~/store/stores";
+import { useStore } from "~/store/stores";
 
 const config = useRuntimeConfig();
 const membersStore = useStore();

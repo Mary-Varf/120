@@ -19,7 +19,8 @@
         </div>
 
         <div v-else>
-            <AppButton @click="setIsEditMode(true)"><SaveIcon></SaveIcon></AppButton>
+            <AppButton v-show="isLoggedIn"
+                       @click="setIsEditMode(true)"><SaveIcon></SaveIcon></AppButton>
         </div>
     </nav>
 
@@ -44,13 +45,13 @@
 
 <script setup>
 import mongoose from "mongoose";
-import {storeToRefs} from "pinia";
+import { storeToRefs } from "pinia";
 import SaveIcon from "~/components/icons/SaveIcon.vue";
 import AppButton from "~/components/UI/AppButton.vue";
 import { useStore } from "~/store/stores";
 
 const membersStore = useStore();
-const { departments } = storeToRefs(membersStore);
+const { departments, isLoggedIn } = storeToRefs(membersStore);
 const { uriDepartment } = useRoute().params;
 
 const isEditMode = ref(false);

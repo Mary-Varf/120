@@ -49,7 +49,7 @@ export const useStore = defineStore({
         async getDepartments() {
             this.setIsDepartmentsLoading(true);
 
-            await $fetch(`${departmentsApi}/departments`)
+            await $fetch(`${departmentsApi}/all`)
                 .then((resp) => {
                     this.departments = resp?.length ? resp : [];
                 })
@@ -77,7 +77,7 @@ export const useStore = defineStore({
         async getMembers() {
             this.setStateIsMembersLoading(true);
 
-            await $fetch(`${membersApi}/members`)
+            await $fetch(`${membersApi}/all`)
                 .then((resp) => {
                     this.members = resp?.length ? resp : [];
                 })

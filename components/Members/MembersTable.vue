@@ -1,15 +1,19 @@
 <template>
-    <div class="md:mt-24 mt-44 h-[calc(100%-6rem)] md:p-0 p-4 col-span-3 bg-gray-800 w-full">
-        <MemberCreate class="-mt-2"></MemberCreate>
+    <div class=" md:p-0 p-4 col-span-3 bg-gray-800 w-full"
+         :class="{'md:mt-24 mt-44 h-[calc(100%-6rem)]': isLoggedIn}"
+    >
+        <MemberCreate v-show="isLoggedIn" class="-mt-2"></MemberCreate>
 
         <AppSpinner v-if="isMembersLoading"></AppSpinner>
 
         <template v-else>
-            <div class="md:grid hidden grid-cols-4 gap-1 font-bold mb-2 p-2">
+            <div class="md:grid hidden gap-1 font-bold mb-2 p-2 border-b-2 border-b-white"
+                 :class="isLoggedIn ? 'grid-cols-4' : 'grid-cols-3'"
+            >
                 <div>Name</div>
                 <div>Surname</div>
                 <div>Department</div>
-                <div>Update/Delete</div>
+                <div v-show="isLoggedIn">Update/Delete</div>
             </div>
 
             <TransitionGroup name="members">
@@ -48,7 +52,7 @@ const { department } = useRoute().params;
 
 membersStore.getMembers();
 
-const { editedItemId, filteredMembers, isMembersLoading } = storeToRefs(membersStore);
+const { editedItemId, filteredMembers, isMembersLoading, isLoggedIn } = storeToRefs(membersStore);
 
 const isEditMode = (id) => {
     return editedItemId.value === id;

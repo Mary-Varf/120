@@ -1,10 +1,11 @@
 <template>
-    <div class="md:grid hidden grid-cols-4 capitalize hover:bg-gray-700"
+    <div class="md:grid hidden capitalize hover:bg-gray-700 gap-1"
+         :class="isLoggedIn ? 'grid-cols-4' : 'grid-cols-3'"
          @click="closeForm">
         <div class="break-all border-b border-slate-700 py-2">{{initialName}}</div>
         <div class="break-all border-b border-slate-700 py-2">{{initialSurname}}</div>
         <div class="break-all border-b border-slate-700 py-2">{{initialDepartment}}</div>
-        <div class="flex items-start py-2">
+        <div class="flex items-start py-2" v-show="isLoggedIn">
             <AppButton class="mr-4"
                        @click="setEditedItemId(props.memberId)">
                 <UpdateIcon></UpdateIcon>
@@ -17,13 +18,13 @@
          @click="closeForm">
         <div>
             <div class="sub-text">Name:</div>
-            <div class="mr-[100px]">{{initialName}}</div>
+            <div class="break-all">{{initialName}}</div>
             <div class="sub-text">Surname:</div>
-            <div>{{initialSurname}}</div>
+            <div class="break-all">{{initialSurname}}</div>
             <div class="sub-text">Department:</div>
-            <div>{{initialDepartment}}</div>
+            <div class="break-all">{{initialDepartment}}</div>
         </div>
-        <div>
+        <div v-show="isLoggedIn" class="flex items-start">
             <AppButton class="mr-2"
                        @click="setEditedItemId(props.memberId)">
                 <UpdateIcon></UpdateIcon>
@@ -48,7 +49,7 @@ const props = defineProps({
 })
 
 const membersStore = useStore();
-const { editedItemId } = storeToRefs(membersStore);
+const { editedItemId, isLoggedIn } = storeToRefs(membersStore);
 
 const deleteItem = () => {
     membersStore.deleteMember(props.memberId);

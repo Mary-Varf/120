@@ -1,9 +1,9 @@
 <template>
-    <div class="-z-1 form grid md:grid-cols-4 gap-2 relative w-full pr-10 z-[40] px-0 md:px-2 md:border-b-0 md:border-transparent border-b-2 border-white pb-2 md:pb-0">
+    <div class="-z-1 form grid md:grid-cols-4 gap-1 relative w-full pr-10 z-[40] px-0 md:px-0 md:border-b-0 md:border-transparent border-b-2 border-white pb-2 md:pb-0">
         <input placeholder="Name"
                ref="input"
                type="text"
-               class="form-item md:px-4 px-2 md:py-2 py-1 md:mr-4 rounded text-black items-start max-w-[250px] lg:max-w-[350px] xl:max-w-auto"
+               class="form-item md:px-4 px-2 md:py-2 py-1 mr-2 rounded text-black items-start max-w-[250px] lg:max-w-[350px] xl:max-w-auto"
                :value="name"
                @input="updateNameInput"
         />
@@ -12,12 +12,11 @@
                placeholder="Surname"
                :value="surname"
                @input="updateSurnameInput"
-               class="form-item md:px-4 px-2 md:py-2 py-1 rounded text-black items-start max-w-[250px] lg:max-w-[350px] xl:max-w-auto"
+               class="form-item md:px-4 px-2 md:py-2 py-1 mr-2 rounded text-black items-start max-w-[250px] lg:max-w-[350px] xl:max-w-auto"
         />
 
         <select v-model="selectedDepartment"
-                class="form-item block capitalize appearance-none md:w-[90%] bg-gray-200 border border-gray-200 text-gray-700 md:py-3 py-1.5 md:px-4 md:pr-8 pr-8 px-2 md:mr-4 md:ml-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 max-w-[250px] lg:max-w-[350px] xl:max-w-auto" id="grid-state"
-        >
+                class="form-item block capitalize appearance-none mr-2 md:mr-0 md:w-[90%] bg-gray-200 border border-gray-200 text-gray-700 md:py-3 py-1.5 md:px-0 md:pr-8  md:pl-2 px-2 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 max-w-[250px] lg:max-w-[350px] xl:max-w-auto" id="grid-state">
             <option disabled
                     v-if="id == null"
                     :value="null"
@@ -34,8 +33,9 @@
             </option>
         </select>
 
-        <div class="self-center md:relative absolute top-0 -right-1.5 md:ml-4">
+        <div class="self-center md:relative absolute top-0 -right-1.5">
             <AppButton @click="handleSave"
+                       class="ml-2"
                        :disabled="!name?.length || !surname?.length || !selectedDepartment?.length"
             ><SaveIcon></SaveIcon>
             </AppButton>
