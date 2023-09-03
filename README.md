@@ -1,7 +1,7 @@
 # Frontend - CMS CODE 530!
 
 Hi! My name is [Mariia Varfolomeeva](https://drive.google.com/file/d/1taoc2hsRtHzncyy9ao37gZQ_K-QCPl3B/view?usp=sharing).
-This app was implemented on Vue3/Nuxt3, MangoDB, Auth0, Tailwindcss.
+This app was implemented on Vue3/Nuxt3, Pinia, MangoDB, Auth0, Tailwindcss.
 Here you can find Management panel where all users can read data and authorised users can create, read, update and delete team members. Also authorised user may add new departments and navigate through them.
 
 ## Demo Page

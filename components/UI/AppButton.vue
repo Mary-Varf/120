@@ -1,5 +1,5 @@
 <template>
-    <button class="rounded hover:bg-black p-0.5 border rounded hover:bg-blue-800">
+    <button class="rounded p-0.5 border border-blue-500 hover:bg-blue-400">
         <slot></slot>
     </button>
 </template>

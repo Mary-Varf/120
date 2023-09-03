@@ -1,10 +1,10 @@
 <template>
-    <div class="md:grid hidden capitalize hover:bg-gray-700 gap-1"
+    <div class="md:grid hidden capitalize hover:bg-blue-200 gap-1"
          :class="isLoggedIn ? 'grid-cols-4' : 'grid-cols-3'"
          @click="closeForm">
-        <div class="break-all border-b border-slate-700 py-2">{{initialName}}</div>
-        <div class="break-all border-b border-slate-700 py-2">{{initialSurname}}</div>
-        <div class="break-all border-b border-slate-700 py-2">{{initialDepartment}}</div>
+        <div class="break-all border-b border-blue-200 py-2">{{initialName}}</div>
+        <div class="break-all border-b border-blue-200 py-2">{{initialSurname}}</div>
+        <div class="break-all border-b border-blue-200 py-2">{{initialDepartment}}</div>
         <div class="flex items-start py-2" v-show="isLoggedIn">
             <AppButton class="mr-4"
                        @click="setEditedItemId(props.memberId)">
@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <div class="md:hidden flex justify-between border-b border-slate-700 py-2"
+    <div class="md:hidden flex justify-between border-b border-blue-200 py-2"
          @click="closeForm">
         <div>
             <div class="sub-text">Name:</div>

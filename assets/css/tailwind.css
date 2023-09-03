@@ -12,18 +12,6 @@
     input, surnamearea {
         outline-color: transparent;
     }
-    .active-btn {
-        @apply text-blue-500 border-blue-500
-    }
-    .active-btn:hover {
-        @apply text-white border-white
-    }
-    .inactive-btn {
-        @apply border-gray-600 text-gray-600
-    }
-    .inactive-btn:hover {
-        @apply border-gray-600 text-gray-600
-    }
 }
 /* width */
 ::-webkit-scrollbar {
@@ -66,5 +54,6 @@ button:disabled {
 }
 
 .router-link-exact-active {
-    background-color: rgb(30 64 175 / 0.8);;
+    background-color: rgb(30 64 175 / 0.8);
+    color: white;
 }

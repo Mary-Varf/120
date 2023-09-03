@@ -1,5 +1,5 @@
 <template>
-    <div class=" md:p-0 p-4 col-span-3 bg-gray-800 w-full"
+    <div class=" md:p-0 p-4 col-span-3 bg-gray-100 w-full"
          :class="{'md:mt-24 mt-44 h-[calc(100%-6rem)]': isLoggedIn}"
     >
         <MemberCreate v-show="isLoggedIn" class="-mt-2"></MemberCreate>
@@ -7,7 +7,7 @@
         <AppSpinner v-if="isMembersLoading"></AppSpinner>
 
         <template v-else>
-            <div class="md:grid hidden gap-1 font-bold mb-2 p-2 border-b-2 border-b-white"
+            <div class="md:grid hidden gap-1 font-bold mb-2 p-2 border-b-2 border-b-blue-800"
                  :class="isLoggedIn ? 'grid-cols-4' : 'grid-cols-3'"
             >
                 <div>Name</div>
@@ -20,7 +20,9 @@
                 <template v-for="member in filteredMembers(department)"
                           :key="member._id"
                 >
-                    <div v-if="isEditMode(member._id)">
+                    <div v-if="isEditMode(member._id)"
+                         class="md:mt-0 mt-2"
+                    >
                         <MemberForm :member="member"
                                     :id="member._id"
                         ></MemberForm>

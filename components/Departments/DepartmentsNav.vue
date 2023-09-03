@@ -1,8 +1,8 @@
 <template>
-    <nav class="hidden md:flex flex-col bg-gray-800 md:relative fixed md:top-0 top-12 right-2 z-[55] pl-4 md:pl-0 break-all flex-wrap">
-        <NuxtLink to="/" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">All</NuxtLink>
+    <nav class="hidden md:flex flex-col bg-gray-100 md:relative fixed md:top-0 top-12 right-2 z-[55] pl-4 md:pl-0 break-all flex-wrap">
+        <NuxtLink to="/" class="text-black hover:bg-gray-200 hover:text-black rounded-md px-3 py-2 text-sm font-medium">All</NuxtLink>
         <NuxtLink :to="`/${item.department}`"
-                  class="capitalize text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium break-all"
+                  class="capitalize text-black hover:bg-blue-200 hover:text-black rounded-md px-3 py-2 text-sm font-medium break-all"
                   v-for="item in departments"
                   :key="item._id"
         >{{item.department}}</NuxtLink>
@@ -25,7 +25,7 @@
     </nav>
 
     <div class="flex flex-col">
-        <select class="md:hidden flex-1 overflow-y-auto capitalize appearance-none w-[130px] bg-gray-200 border border-gray-200 text-gray-700 md:py-3 py-1 md:px-4 md:pr-8 pr-8 px-1.5 md:mr-4 md:ml-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 max-w-[250px] lg:max-w-[350px] xl:max-w-auto" id="grid-state">
+        <select class="md:hidden flex-1 overflow-y-auto capitalize appearance-none w-[130px] bg-white border border-gray-200 text-gray-700 md:py-3 py-1 md:px-4 md:pr-8 pr-8 px-1.5 md:mr-4 md:ml-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 max-w-[250px] lg:max-w-[350px] xl:max-w-auto" id="grid-state">
             <option class="capitalize"
                     :selected="uriDepartment == undefined"
             >

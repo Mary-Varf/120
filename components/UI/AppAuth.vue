@@ -1,12 +1,12 @@
 <template>
-    <div class="text-gray-300 flex bg-gray-800 md:pl-0 pl-4 bg-gray-800 z-50">
-        <AppButton class="mr-3 uppercase px-1.5"
-                   :class="isLoggedIn ? 'inactive-btn' : 'active-btn'"
+    <div class="text-black flex bg-gray-100 md:pl-0 pl-4 bg-gray-100 z-50">
+        <AppButton class="mr-3 uppercase px-1.5 disabled:bg-gray-100 disabled:border-gray-300 disabled:text-gray-300"
+                   :disabled="isLoggedIn"
                    @click="login"
         >Log IN</AppButton>
 
-        <AppButton class="uppercase px-1.5"
-                   :class="isLoggedIn ? 'active-btn' : 'inactive-btn'"
+        <AppButton class="uppercase px-1.5 disabled:bg-gray-100 disabled:border-gray-300 disabled:text-gray-300"
+                   :disabled="!isLoggedIn"
                    @click="logout"
         >Logout</AppButton>
     </div>
