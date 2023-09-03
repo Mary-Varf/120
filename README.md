@@ -6,12 +6,12 @@ Here you can find Management panel where all users can read data and authorised 
 
 ## Demo Page
 
-Please visit [DEMO PAGE](https://120-hhg8-2mwwvxecv-mary-varf.vercel.app/)
+Please visit [DEMO PAGE](https://120-hhg8.vercel.app/)
 
 ## Preview
 
 <p align='center'>
-  <img src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExODhva2R6Mndkejl4ZzVjbTI5dDE5YnpyOGZkbHgwMmV0Ym40amRvYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/opKkTULaz02kH7Tngm/giphy.gif' width='60%'>
+  <img src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWh3anliMGg4OTZpemxmcmowMTFnZng3aHJkaWl0dTB6NDN4ampsOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/r92Bg8t02Bx3IO5Joz/giphy.gif' width='60%'>
 </p>
 
 ## Endpoints
