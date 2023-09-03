@@ -6,7 +6,7 @@ Here you can find Management panel where all users can read data and authorised 
 
 ## Demo Page
 
-Please visit [DEMO PAGE](https://120-hhg8.vercel.app/)
+Please visit [DEMO PAGE](https://120-hhg8-2mwwvxecv-mary-varf.vercel.app/)
 
 ## Preview
 
